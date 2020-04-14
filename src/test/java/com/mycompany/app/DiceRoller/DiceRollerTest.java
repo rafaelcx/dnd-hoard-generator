@@ -1,9 +1,11 @@
 package com.mycompany.app.DiceRoller;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
-public class DiceRollerTest extends TestCase {
+public class DiceRollerTest {
 
+    @Test
     public void testMakeRoll() {
         int arbitrary_dice_quantity = 2;
         int arbitrary_dice_type = 6;
