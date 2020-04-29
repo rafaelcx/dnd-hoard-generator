@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 public class CoinTest {
 
-    static Stream<Arguments> coinDataProvider() {
+    public static Stream<Arguments> coinDataProvider() {
         return Stream.of(
                 arguments(1, Coin.COPPER_TYPE),
                 arguments(1, Coin.SILVER_TYPE),

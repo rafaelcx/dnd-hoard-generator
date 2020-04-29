@@ -12,11 +12,11 @@ public class Coin {
     public static final String GOLD_TYPE = "gold";
     public static final String PLATINUM_TYPE = "platinum";
 
-    public static Coin create(int tier, String coin_type, int dice_qnt, int multiplier) throws Exception{
+    public static Coin create(int tier, String coin_type, int dice_qnt, int multiplier) throws Exception {
         return new Coin(tier, coin_type, dice_qnt, multiplier);
     }
 
-    private Coin(int tier, String coin_type, int dice_qnt, int multiplier) throws Exception{
+    private Coin(int tier, String coin_type, int dice_qnt, int multiplier) throws Exception {
         this.tier = tier;
         this.coin_type = coin_type;
         this.dice_qnt = dice_qnt;
