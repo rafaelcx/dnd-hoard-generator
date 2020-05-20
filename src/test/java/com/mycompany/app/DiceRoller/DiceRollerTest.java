@@ -1,22 +1,28 @@
 package com.mycompany.app.DiceRoller;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.mycompany.app.Support.DiceRollerForTests;
+import com.mycompany.app.Support.DiceRollerResolverSwitcher;
 import org.junit.jupiter.api.Test;
 
 public class DiceRollerTest {
 
     @Test
     public void testMakeRoll() {
-        int arbitrary_dice_quantity = 2;
-        int arbitrary_dice_type = 6;
+        DiceRollerResolverSwitcher.mock(new DiceRollerForTests());
+        DiceRollerForTests.mockDiceResult(10);
 
-        int result = DiceRoller.makeRoll(arbitrary_dice_quantity, arbitrary_dice_type);
+        Roller dice_roller = DiceRollerResolver.resolve();
+        int result = dice_roller.makeRoll(0, 0);
 
-        int lowest_value_posible = arbitrary_dice_quantity;
-        int highest_value_posible = arbitrary_dice_type * arbitrary_dice_quantity;
+        assertEquals(10, result);
+        tearDown();
+    }
 
-        assertTrue(result >= lowest_value_posible);
-        assertTrue(result <= highest_value_posible);
+    private void tearDown() {
+        DiceRollerResolverSwitcher.reset();
+        DiceRollerForTests.resetMockDiceResult();
     }
 
 }

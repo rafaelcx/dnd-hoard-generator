@@ -2,9 +2,9 @@ package com.mycompany.app.DiceRoller;
 
 import java.util.Random;
 
-public class DiceRoller {
+public class DiceRoller implements Roller {
 
-    public static int makeRoll(int dice_quantity, int dice_type) {
+    public int makeRoll(int dice_quantity, int dice_type) {
         int value = 0;
         for(int i = 0; i < dice_quantity; i++) {
             value += DiceRoller.rollSingleDie(dice_type);
