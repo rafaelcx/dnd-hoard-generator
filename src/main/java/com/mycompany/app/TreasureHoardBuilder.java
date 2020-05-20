@@ -49,7 +49,7 @@ public abstract class TreasureHoardBuilder {
 
         String magic_item_table_roll_string = mir.getMagicItemTableRoll();
 
-        if (magic_item_table_roll_string.equals("null")) {
+        if (magic_item_table_roll_string == null) {
             return "";
         }
 
