@@ -31,6 +31,9 @@ public class HoardGeneratorUI {
         button_group.add(national_challenge_radio_btn);
         button_group.add(world_challenge_radio_btn);
 
+        this.local_challenge_radio_btn.setSelected(true);
+
+
         make_loot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,21 +75,19 @@ public class HoardGeneratorUI {
     }
 
     private void printHoardAtTextArea(TreasureHoard treasure_hoard) {
-        textArea1.append("Copper coins: " + treasure_hoard.getCopperPieces() + "\n");
-        textArea1.append("Silver coins: " + treasure_hoard.getSilverPieces() + "\n");
-        textArea1.append("Gold coins: " + treasure_hoard.getGoldPieces()+ "\n");
-        textArea1.append("Platinum coins: " + treasure_hoard.getPlatinumPieces()+ "\n");
-        textArea1.append("Valuables: " + treasure_hoard.getValuables() + "\n");
-        textArea1.append("----------------------------------\n");
-        textArea1.append("Magic  Items: \n" + treasure_hoard.getMagicItems());
-        textArea1.append("\n\n");
+        textArea1.append("Loot Roll:\n");
 
-        System.out.println(treasure_hoard.getCopperPieces() + " cp");
-        System.out.println(treasure_hoard.getSilverPieces() + " sp");
-        System.out.println(treasure_hoard.getGoldPieces() + " gp");
-        System.out.println(treasure_hoard.getPlatinumPieces() + " pp");
-        System.out.println(treasure_hoard.getValuables());
-        System.out.println(treasure_hoard.getMagicItems());
+        textArea1.append(
+                treasure_hoard.getCopperPieces() + "pc " +
+                treasure_hoard.getSilverPieces() + "pp " +
+                treasure_hoard.getGoldPieces() + "po " +
+                treasure_hoard.getPlatinumPieces() + "pp"
+        );
+
+        textArea1.append("\n");
+        textArea1.append(treasure_hoard.getValuables() + "\n");
+        textArea1.append(treasure_hoard.getMagicItems());
+        textArea1.append("\n\n");
     }
 
     public static void main(String[] args) {
@@ -98,7 +99,7 @@ public class HoardGeneratorUI {
 
         JFrame frame = new JFrame("Loot Generator");
 
-        frame.setPreferredSize(new Dimension(400, 600));
+        frame.setPreferredSize(new Dimension(450, 700));
         frame.setContentPane(new HoardGeneratorUI().Jpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
