@@ -31,47 +31,37 @@ public class HoardGeneratorUI {
         button_group.add(national_challenge_radio_btn);
         button_group.add(world_challenge_radio_btn);
 
-        this.local_challenge_radio_btn.setSelected(true);
+        local_challenge_radio_btn.setSelected(true);
 
 
-        make_loot.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // All this logic is temporary since is working as a test for now
+        make_loot.addActionListener(e -> {
+            TreasureHoard treasure_hoard;
 
-                TreasureHoard treasure_hoard;
-
-                if (local_challenge_radio_btn.isSelected()) {
-                    treasure_hoard = TreasureHoardManager.build(TreasureHoard.LOCAL_HERO_TIER);
-                    printHoardAtTextArea(treasure_hoard);
-                }
-
-                else if (regional_challenge_radio_btn.isSelected()) {
-                    treasure_hoard = TreasureHoardManager.build(TreasureHoard.REGIONAL_HERO_TIER);
-                    printHoardAtTextArea(treasure_hoard);
-                }
-
-                else if (national_challenge_radio_btn.isSelected()) {
-                    treasure_hoard = TreasureHoardManager.build(TreasureHoard.NATIONAL_HERO_TIER);
-                    printHoardAtTextArea(treasure_hoard);
-                }
-
-                else if (world_challenge_radio_btn.isSelected()) {
-                    treasure_hoard = TreasureHoardManager.build(TreasureHoard.WORLD_HERO_TIER);
-                    printHoardAtTextArea(treasure_hoard);
-                }
-
-                else
-                    JOptionPane.showMessageDialog(null, "You must select one of the game tiers to generate a Treasure Hoard");
+            if (local_challenge_radio_btn.isSelected()) {
+                treasure_hoard = TreasureHoardManager.build(TreasureHoard.LOCAL_HERO_TIER);
+                printHoardAtTextArea(treasure_hoard);
             }
+
+            else if (regional_challenge_radio_btn.isSelected()) {
+                treasure_hoard = TreasureHoardManager.build(TreasureHoard.REGIONAL_HERO_TIER);
+                printHoardAtTextArea(treasure_hoard);
+            }
+
+            else if (national_challenge_radio_btn.isSelected()) {
+                treasure_hoard = TreasureHoardManager.build(TreasureHoard.NATIONAL_HERO_TIER);
+                printHoardAtTextArea(treasure_hoard);
+            }
+
+            else if (world_challenge_radio_btn.isSelected()) {
+                treasure_hoard = TreasureHoardManager.build(TreasureHoard.WORLD_HERO_TIER);
+                printHoardAtTextArea(treasure_hoard);
+            }
+
+            else
+                JOptionPane.showMessageDialog(null, "You must select one of the game tiers to generate a Treasure Hoard");
         });
 
-        quit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
+        quit.addActionListener(actionEvent -> System.exit(0));
     }
 
     private void printHoardAtTextArea(TreasureHoard treasure_hoard) {
