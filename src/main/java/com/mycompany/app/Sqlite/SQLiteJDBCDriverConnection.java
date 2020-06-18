@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class SQLiteJDBCDriverConnection {
 
-    private static final String DATABASE_CONNECTION_STRING = "jdbc:sqlite:src/main/resources/db/my_database.db";
+    private static final String DATABASE_CONNECTION_STRING = "jdbc:sqlite::resource:db/my_database.db";
 
     public static ResultSet executeQuery(String query) {
         ResultSet result_set = null;
