@@ -21,7 +21,7 @@ class HoardBuilderForLocalTierTest {
         assertEquals(300, treasure_hoard.getSilverPieces());
         assertEquals(20, treasure_hoard.getGoldPieces());
         assertEquals(0, treasure_hoard.getPlatinumPieces());
-        assertEquals("Valuables: 0x 0 Po Gems", treasure_hoard.getValuables());
+        assertEquals("0 po Gems (x0)", treasure_hoard.getValuables());
         assertEquals("", treasure_hoard.getMagicItems());
 
         tearDown();
@@ -39,8 +39,8 @@ class HoardBuilderForLocalTierTest {
         assertEquals(1800, treasure_hoard.getSilverPieces());
         assertEquals(120, treasure_hoard.getGoldPieces());
         assertEquals(0, treasure_hoard.getPlatinumPieces());
-        assertEquals("Valuables: 12x 50 Po Gems", treasure_hoard.getValuables());
-        assertEquals("Wings of flying\n", treasure_hoard.getMagicItems());
+        assertEquals("50 po Gems (x12)", treasure_hoard.getValuables());
+        assertEquals("            - Wings of flying\n", treasure_hoard.getMagicItems());
 
         tearDown();
     }

@@ -21,7 +21,7 @@ class HoardBuilderForRegionalTierTest {
         assertEquals(2000, treasure_hoard.getSilverPieces());
         assertEquals(600, treasure_hoard.getGoldPieces());
         assertEquals(30, treasure_hoard.getPlatinumPieces());
-        assertEquals("Valuables: 0x 0 Po Gems", treasure_hoard.getValuables());
+        assertEquals("0 po Gems (x0)", treasure_hoard.getValuables());
         assertEquals("", treasure_hoard.getMagicItems());
 
         tearDown();
@@ -39,8 +39,8 @@ class HoardBuilderForRegionalTierTest {
         assertEquals(12000, treasure_hoard.getSilverPieces());
         assertEquals(3600, treasure_hoard.getGoldPieces());
         assertEquals(180, treasure_hoard.getPlatinumPieces());
-        assertEquals("Valuables: 8x 250 Po Gems", treasure_hoard.getValuables());
-        assertEquals("Tome of understanding\n", treasure_hoard.getMagicItems());
+        assertEquals("250 po Gems (x8)", treasure_hoard.getValuables());
+        assertEquals("            - Tome of understanding\n", treasure_hoard.getMagicItems());
 
         tearDown();
     }

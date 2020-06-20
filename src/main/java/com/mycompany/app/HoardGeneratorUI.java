@@ -25,7 +25,9 @@ public class HoardGeneratorUI {
     private JButton quit;
 
     private javax.swing.JScrollPane JScrollPane;
-    private JTextArea textArea1;
+    private JButton rollHoardLootButton;
+    private JButton clearButton;
+    private JEditorPane textArea1;
 
     public HoardGeneratorUI() {
 
@@ -42,26 +44,33 @@ public class HoardGeneratorUI {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-
                     TreasureHoard treasure_hoard;
 
                     if (local_challenge_radio_btn.isSelected()) {
                         treasure_hoard = TreasureHoardManager.build(TreasureHoard.LOCAL_HERO_TIER);
-                        printHoardAtTextArea(treasure_hoard);
-                    } else if (regional_challenge_radio_btn.isSelected()) {
+                        printHoardAtTextArea(treasure_hoard, "Individual treasure for challenge rating: 1-4");
+                    }
+
+                    else if (regional_challenge_radio_btn.isSelected()) {
                         treasure_hoard = TreasureHoardManager.build(TreasureHoard.REGIONAL_HERO_TIER);
-                        printHoardAtTextArea(treasure_hoard);
-                    } else if (national_challenge_radio_btn.isSelected()) {
+                        printHoardAtTextArea(treasure_hoard, "Individual treasure for challenge rating: 5-10");
+                    }
+
+                    else if (national_challenge_radio_btn.isSelected()) {
                         treasure_hoard = TreasureHoardManager.build(TreasureHoard.NATIONAL_HERO_TIER);
-                        printHoardAtTextArea(treasure_hoard);
-                    } else if (world_challenge_radio_btn.isSelected()) {
+                        printHoardAtTextArea(treasure_hoard, "Individual treasure for challenge rating: 11-16");
+                    }
+
+                    else if (world_challenge_radio_btn.isSelected()) {
                         treasure_hoard = TreasureHoardManager.build(TreasureHoard.WORLD_HERO_TIER);
-                        printHoardAtTextArea(treasure_hoard);
-                    } else
+                        printHoardAtTextArea(treasure_hoard, "Individual treasure for challenge rating: 17-20");
+                    }
+
+                    else
                         JOptionPane.showMessageDialog(null, "You must select one of the game tiers to generate a Treasure Hoard");
 
                 } catch (Exception e) {
-                    textArea1.append(e.getMessage());
+                    textArea1.setText(textArea1.getText() + e.getMessage());
                 }
 
             }
@@ -75,20 +84,21 @@ public class HoardGeneratorUI {
         });
     }
 
-    private void printHoardAtTextArea(TreasureHoard treasure_hoard) {
-        textArea1.append("Loot Roll:\n");
+    private void printHoardAtTextArea(TreasureHoard treasure_hoard, String header) {
+        textArea1.setText(textArea1.getText() + header + "\n");
 
-        textArea1.append(
-                treasure_hoard.getCopperPieces() + "pc " +
-                        treasure_hoard.getSilverPieces() + "pp " +
-                        treasure_hoard.getGoldPieces() + "po " +
-                        treasure_hoard.getPlatinumPieces() + "pp"
+        textArea1.setText(
+                textArea1.getText() +
+                        "      - " +
+                        treasure_hoard.getCopperPieces() + " pc + " +
+                        treasure_hoard.getSilverPieces() + " pp + " +
+                        treasure_hoard.getGoldPieces() + " po + " +
+                        treasure_hoard.getPlatinumPieces() + " pp"
         );
 
-        textArea1.append("\n");
-        textArea1.append(treasure_hoard.getValuables() + "\n");
-        textArea1.append(treasure_hoard.getMagicItems());
-        textArea1.append("\n\n");
+        textArea1.setText(textArea1.getText() + "\n" + "      - " + treasure_hoard.getValuables());
+        textArea1.setText(textArea1.getText() + "\n" + "      - " + "Magic Items:\n" + treasure_hoard.getMagicItems());
+        textArea1.setText(textArea1.getText() + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" + "\n");
     }
 
     public static void main(String[] args) {
@@ -130,19 +140,19 @@ public class HoardGeneratorUI {
         Jpanel.setPreferredSize(new Dimension(350, 500));
         tittle = new JLabel();
         tittle.setText("Gimble Gamble's Horde Loot Generator");
-        Jpanel.add(tittle, new GridConstraints(0, 1, 1, 6, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Jpanel.add(tittle, new GridConstraints(0, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         select_hoard_description = new JLabel();
         select_hoard_description.setText("Select Horde CR:");
-        Jpanel.add(select_hoard_description, new GridConstraints(2, 1, 1, 6, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Jpanel.add(select_hoard_description, new GridConstraints(2, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         local_challenge_radio_btn = new JRadioButton();
         local_challenge_radio_btn.setText("Challenge 0-4");
         Jpanel.add(local_challenge_radio_btn, new GridConstraints(3, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         regional_challenge_radio_btn = new JRadioButton();
         regional_challenge_radio_btn.setText("Challenge 5-10");
-        Jpanel.add(regional_challenge_radio_btn, new GridConstraints(4, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Jpanel.add(regional_challenge_radio_btn, new GridConstraints(4, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         national_challenge_radio_btn = new JRadioButton();
         national_challenge_radio_btn.setText("Challenge 11-16");
-        Jpanel.add(national_challenge_radio_btn, new GridConstraints(5, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Jpanel.add(national_challenge_radio_btn, new GridConstraints(5, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         world_challenge_radio_btn = new JRadioButton();
         world_challenge_radio_btn.setText("Challenge 17-20");
         Jpanel.add(world_challenge_radio_btn, new GridConstraints(6, 1, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -154,20 +164,29 @@ public class HoardGeneratorUI {
         Jpanel.add(spacer3, new GridConstraints(9, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         quit = new JButton();
         quit.setText("Quit");
-        Jpanel.add(quit, new GridConstraints(11, 4, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Jpanel.add(quit, new GridConstraints(11, 2, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
         Jpanel.add(separator1, new GridConstraints(7, 1, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator2 = new JSeparator();
         Jpanel.add(separator2, new GridConstraints(1, 1, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         JScrollPane = new JScrollPane();
         Jpanel.add(JScrollPane, new GridConstraints(9, 1, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        textArea1 = new JTextArea();
+        textArea1 = new JEditorPane();
+        textArea1.setContentType("text/plain");
         JScrollPane.setViewportView(textArea1);
-        make_loot = new JButton();
-        make_loot.setText("Make Single Loot");
-        Jpanel.add(make_loot, new GridConstraints(6, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
-        Jpanel.add(spacer4, new GridConstraints(11, 1, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        Jpanel.add(spacer4, new GridConstraints(11, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer5 = new Spacer();
+        Jpanel.add(spacer5, new GridConstraints(9, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        rollHoardLootButton = new JButton();
+        rollHoardLootButton.setText("Roll Hoard Loot");
+        Jpanel.add(rollHoardLootButton, new GridConstraints(4, 3, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        make_loot = new JButton();
+        make_loot.setText("Roll Single Loot");
+        Jpanel.add(make_loot, new GridConstraints(5, 4, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        clearButton = new JButton();
+        clearButton.setText("Clear");
+        Jpanel.add(clearButton, new GridConstraints(6, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -176,4 +195,5 @@ public class HoardGeneratorUI {
     public JComponent $$$getRootComponent$$$() {
         return Jpanel;
     }
+
 }

@@ -40,7 +40,7 @@ public abstract class TreasureHoardBuilder {
 
         String valuables_value = Integer.toString(valuables_entity.getValue());
 
-        return "Valuables: " + valuables_quantity + "x " + valuables_value + " Po Gems";
+        return valuables_value + " po Gems (x" + valuables_quantity + ")";
     }
 
     public String generateMagicItensByTier(int tier) {
@@ -68,7 +68,7 @@ public abstract class TreasureHoardBuilder {
                 percentage_dice_result = this.dice_roller.makeRoll(1, 100);
                 MagicItem mi = MagicItemDatabaseRepository.loadMagicItemByCategoryAndRollResult(roll_magic_item_category, percentage_dice_result);
 
-                magic_items_list = magic_items_list + mi.getName() + "\n";
+                magic_items_list = magic_items_list + "            - " + mi.getName() + "\n";
             }
         }
 

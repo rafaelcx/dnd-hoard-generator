@@ -21,7 +21,7 @@ class HoardBuilderForNationalTierTest {
         assertEquals(0, treasure_hoard.getSilverPieces());
         assertEquals(4000, treasure_hoard.getGoldPieces());
         assertEquals(500, treasure_hoard.getPlatinumPieces());
-        assertEquals("Valuables: 0x 0 Po Gems", treasure_hoard.getValuables());
+        assertEquals("0 po Gems (x0)", treasure_hoard.getValuables());
         assertEquals("", treasure_hoard.getMagicItems());
 
         tearDown();
@@ -39,8 +39,8 @@ class HoardBuilderForNationalTierTest {
         assertEquals(0, treasure_hoard.getSilverPieces());
         assertEquals(24000, treasure_hoard.getGoldPieces());
         assertEquals(3000, treasure_hoard.getPlatinumPieces());
-        assertEquals("Valuables: 18x 1000 Po Gems", treasure_hoard.getValuables());
-        assertEquals("Tome of the stilled tongue\n", treasure_hoard.getMagicItems());
+        assertEquals("1000 po Gems (x18)", treasure_hoard.getValuables());
+        assertEquals("            - Tome of the stilled tongue\n", treasure_hoard.getMagicItems());
 
         tearDown();
     }
