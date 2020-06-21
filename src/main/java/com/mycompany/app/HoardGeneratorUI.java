@@ -76,12 +76,92 @@ public class HoardGeneratorUI {
             }
         });
 
+        rollHoardLootButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                TreasureHoard treasure_hoard = new TreasureHoard();
+
+                if (local_challenge_radio_btn.isSelected()) {
+                    for (int i = 0; i < 7; i++) {
+                        TreasureHoard temp_th = TreasureHoardManager.build(TreasureHoard.LOCAL_HERO_TIER);
+
+                        treasure_hoard.setCopperPieces(treasure_hoard.getCopperPieces() + temp_th.getCopperPieces());
+                        treasure_hoard.setSilverPieces(treasure_hoard.getSilverPieces() + temp_th.getSilverPieces());
+                        treasure_hoard.setGoldPieces(treasure_hoard.getGoldPieces() + temp_th.getGoldPieces());
+                        treasure_hoard.setPlatinumPieces(treasure_hoard.getPlatinumPieces() + temp_th.getPlatinumPieces());
+                        treasure_hoard.setValuables(treasure_hoard.getValuables() + "\n" + temp_th.getValuables());
+                        treasure_hoard.setMagicItems(treasure_hoard.getMagicItems() + temp_th.getMagicItems());
+                    }
+
+                    printHoardAtTextArea(treasure_hoard, "Hoard for challenge rating: 1-4");
+                }
+
+                else if (regional_challenge_radio_btn.isSelected()) {
+                    for (int i = 0; i < 18; i++) {
+                        TreasureHoard temp_th = TreasureHoardManager.build(TreasureHoard.REGIONAL_HERO_TIER);
+
+                        treasure_hoard.setCopperPieces(treasure_hoard.getCopperPieces() + temp_th.getCopperPieces());
+                        treasure_hoard.setSilverPieces(treasure_hoard.getSilverPieces() + temp_th.getSilverPieces());
+                        treasure_hoard.setGoldPieces(treasure_hoard.getGoldPieces() + temp_th.getGoldPieces());
+                        treasure_hoard.setPlatinumPieces(treasure_hoard.getPlatinumPieces() + temp_th.getPlatinumPieces());
+                        treasure_hoard.setValuables(treasure_hoard.getValuables() + "\n" + temp_th.getValuables());
+                        treasure_hoard.setMagicItems(treasure_hoard.getMagicItems() + temp_th.getMagicItems());
+                    }
+
+                    printHoardAtTextArea(treasure_hoard, "Hoard for challenge rating: 5-10");
+                }
+
+                else if (national_challenge_radio_btn.isSelected()) {
+                    for (int i = 0; i < 12; i++) {
+                        TreasureHoard temp_th = TreasureHoardManager.build(TreasureHoard.NATIONAL_HERO_TIER);
+
+                        treasure_hoard.setCopperPieces(treasure_hoard.getCopperPieces() + temp_th.getCopperPieces());
+                        treasure_hoard.setSilverPieces(treasure_hoard.getSilverPieces() + temp_th.getSilverPieces());
+                        treasure_hoard.setGoldPieces(treasure_hoard.getGoldPieces() + temp_th.getGoldPieces());
+                        treasure_hoard.setPlatinumPieces(treasure_hoard.getPlatinumPieces() + temp_th.getPlatinumPieces());
+                        treasure_hoard.setValuables(treasure_hoard.getValuables() + "\n" + temp_th.getValuables());
+                        treasure_hoard.setMagicItems(treasure_hoard.getMagicItems() + temp_th.getMagicItems());
+                    }
+
+                    printHoardAtTextArea(treasure_hoard, "Hoard for challenge rating: 11-16");
+                }
+
+                else if (world_challenge_radio_btn.isSelected()) {
+                    for (int i = 0; i < 8; i++) {
+                        TreasureHoard temp_th = TreasureHoardManager.build(TreasureHoard.WORLD_HERO_TIER);
+
+                        treasure_hoard.setCopperPieces(treasure_hoard.getCopperPieces() + temp_th.getCopperPieces());
+                        treasure_hoard.setSilverPieces(treasure_hoard.getSilverPieces() + temp_th.getSilverPieces());
+                        treasure_hoard.setGoldPieces(treasure_hoard.getGoldPieces() + temp_th.getGoldPieces());
+                        treasure_hoard.setPlatinumPieces(treasure_hoard.getPlatinumPieces() + temp_th.getPlatinumPieces());
+                        treasure_hoard.setValuables(treasure_hoard.getValuables() + "\n" + temp_th.getValuables());
+                        treasure_hoard.setMagicItems(treasure_hoard.getMagicItems() + temp_th.getMagicItems());
+                    }
+
+                    printHoardAtTextArea(treasure_hoard, "Hoard for challenge rating: 17-20");
+                }
+
+                else
+                    JOptionPane.showMessageDialog(null, "You must select one of the game tiers to generate a Treasure Hoard");
+
+
+            }
+        });
+
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.exit(0);
             }
         });
+
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                textArea1.setText("");
+            }
+        });
+
     }
 
     private void printHoardAtTextArea(TreasureHoard treasure_hoard, String header) {
